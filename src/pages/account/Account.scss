@@ -1,0 +1,10 @@
+.account{
+    display: flex;
+    width: 100%;
+    .accountContainer{
+        flex: 6;
+        .auth-body{
+            padding: 2rem 0 0 18rem;
+        }
+    }
+}
