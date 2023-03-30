@@ -21,8 +21,8 @@ const ViewUsers = () => {
 
   const fetchCustomers = async () => {
     const response = await fetchCustmersApi();
+    console.log(response);
     await setCustomers(response.allUser);
-    // console.log(Customers);
   };
 
   return (
@@ -62,19 +62,19 @@ const ViewUsers = () => {
                     <TableCell className="tableCell">
                       {customer.address}
                     </TableCell>
-                    <TableCell className="tableCell">
-                      {customer.role}
-                    </TableCell>
+                    <TableCell className="tableCell">{customer.role}</TableCell>
                     <TableCell className="tableCell">
                       {customer.gymPlan}
                     </TableCell>
                     <TableCell className="tableCell">
                       {customer.salary}
                     </TableCell>
+                    <TableCell className="tableCell">
+                      <button>Delete</button>
+                    </TableCell>
                   </TableRow>
-                )
-              }
-              )}
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>

@@ -32,7 +32,7 @@ const UserForm = () => {
         gymPlan: Plan,
         salary: Salary,
       };
-      console.log(body);
+      // console.log(body);
       const response = await SignupApi(body);
       console.log(response);
       alert("SignUp Successfull");
@@ -159,9 +159,13 @@ const UserForm = () => {
               <label htmlFor="salary" className="input-label">
                 Salary
               </label>
-              <input type="number" name="salary" id="salary" 
-              disabled={Role === "customer" ? true : false}
-              onChange={(e) => setSalary(e.target.value)}/>
+              <input
+                type="number"
+                name="salary"
+                id="salary"
+                disabled={Role === "customer" ? true : false}
+                onChange={(e) => setSalary(e.target.value)}
+              />
             </div>
             <button type="submit" className="btn-submit">
               Submit

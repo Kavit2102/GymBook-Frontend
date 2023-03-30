@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import { feedBackApi } from "../../../service/auth.service";
+import { createFeedBackApi } from "../../../service/auth.service";
 import "./feedbackForm.scss";
 
 const FeedbackForm = () => {
@@ -18,7 +18,7 @@ const FeedbackForm = () => {
         feedBack: Feedback,
       };
       // console.log(body);
-      const response = await feedBackApi(body);
+      const response = await createFeedBackApi(body);
       console.log(response);
 
       // localStorage.setItem("login_status", JSON.stringify(response.user));

@@ -18,12 +18,12 @@ const Signin = () => {
 
     try {
       const body = { email: Email.trim(), password: Password.trim() };
-      console.log(body);
+      // console.log(body);
       const response = await LoginApi(body);
       console.log(response);
 
-      localStorage.setItem("login_status", JSON.stringify(response.user));
-      let token = localStorage.setItem("token_status", response.token);
+      await localStorage.setItem("login_status", JSON.stringify(response.user));
+      let token = await localStorage.setItem("token_status", response.token);
       console.log(token);
 
       alert("Login Successfull");

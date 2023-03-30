@@ -21,8 +21,15 @@ export async function fetchCustmersApi() {
   return response.data;
 }
 
-export async function feedBackApi(body) {
-  const response = await Axiosinstance.post("/getfeedback", body, {
+export async function createFeedBackApi(body) {
+  const response = await Axiosinstance.post("/createfeedback", body, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}
+
+export async function getFeedBackApi() {
+  const response = await Axiosinstance.get("/getfeedback", {
     headers: { "Content-Type": "application/json" },
   });
   return response.data;
@@ -30,6 +37,20 @@ export async function feedBackApi(body) {
 
 export async function addClassApi(body) {
   const response = await Axiosinstance.post("/addclass", body, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}
+
+export async function loggedUserApi() {
+  const response = await Axiosinstance.get("/loggeduser", {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}
+
+export async function changePassApi(body) {
+  const response = await Axiosinstance.post("/changepassword", body, {
     headers: { "Content-Type": "application/json" },
   });
   return response.data;

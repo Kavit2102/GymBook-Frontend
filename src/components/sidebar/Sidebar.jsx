@@ -5,11 +5,25 @@ import FeedbackIcon from "@mui/icons-material/Feedback";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/gym.png";
 
 const Sidebar = (props) => {
+  const history = useNavigate();
+
+  const navigate = useNavigate();
+  const Back = () => {
+    navigate(-1);
+  };
+
+  const deleteLT = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("login_status");
+    localStorage.removeItem("token_status");
+    history("/");
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -50,6 +64,12 @@ const Sidebar = (props) => {
                 <span>View Users</span>
               </li>
             </Link>
+            <Link to="/admin/view-class" style={{ textDecoration: "none" }}>
+              <li>
+                <ViewListIcon className="icon" />
+                <span>View Classes</span>
+              </li>
+            </Link>
             <Link to="/admin/view-feedbacks" style={{ textDecoration: "none" }}>
               <li>
                 <FeedbackIcon className="icon" />
@@ -63,7 +83,7 @@ const Sidebar = (props) => {
               </li>
             </Link>
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link onClick={deleteLT} style={{ textDecoration: "none" }}>
               <li>
                 <ExitToAppIcon className="icon" />
                 <span>Logout</span>
@@ -98,7 +118,7 @@ const Sidebar = (props) => {
               </li>
             </Link>
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link onClick={deleteLT} style={{ textDecoration: "none" }}>
               <li>
                 <ExitToAppIcon className="icon" />
                 <span>Logout</span>
@@ -140,7 +160,7 @@ const Sidebar = (props) => {
               </li>
             </Link>
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link onClick={deleteLT} style={{ textDecoration: "none" }}>
               <li>
                 <ExitToAppIcon className="icon" />
                 <span>Logout</span>
@@ -151,14 +171,14 @@ const Sidebar = (props) => {
 
         {props.mode === "account" && (
           <ul>
-            <Link to={""} style={{ textDecoration: "none" }}>
+            <Link onClick={Back} style={{ textDecoration: "none" }}>
               <li>
                 <ArrowBackIcon className="icon" />
                 <span>Go Back</span>
               </li>
             </Link>
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link onClick={deleteLT} style={{ textDecoration: "none" }}>
               <li>
                 <ExitToAppIcon className="icon" />
                 <span>Logout</span>

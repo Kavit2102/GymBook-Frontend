@@ -35,6 +35,11 @@ function App() {
               />
               <Route exact path="addclass-form" element={<AddClassForm />} />
               <Route exact path="view-users" element={<ViewUsers />} />
+              <Route
+                exact
+                path="view-class"
+                element={<ViewClasses mode="admin" />}
+              />
               <Route exact path="view-feedbacks" element={<ViewFeedback />} />
             </Route>
 
@@ -46,7 +51,11 @@ function App() {
 
             <Route path="customer">
               <Route exact index element={<Home mode="customer" />} />
-              <Route exact path="view-classes" element={<ViewClasses />} />
+              <Route
+                exact
+                path="view-classes"
+                element={<ViewClasses mode="customer" />}
+              />
               <Route exact path="my-booking" element={<MyBooking />} />
               <Route exact path="feedback-form" element={<FeedbackFormC />} />
             </Route>

@@ -1,26 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import { addClassApi } from "../../../service/auth.service";
+import { fetchCustmersApi } from "../../../service/auth.service";
+import { addClassApi } from "../../../service/class.service";
 import "./AddClass.scss";
 
 const AddClass = () => {
   const [Title, setTitle] = useState("");
   const [Desc, setDesc] = useState("");
-  const [Trainer, setTrainer] = useState("");
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
+  const [trainerName, setTrainerName] = useState("");
+  const [trainerId, setTrainerId] = useState("");
+  const [Users, setUsers] = useState([]);
+
+  const fetchTrainers = async () => {
+    let users = await fetchCustmersApi();
+    await setUsers(users.allUser);
+    console.log(Users);
+  };
+
+  // const handleSelect = (e) => {
+  //   setTrainerName(e.target.value);
+  //   console.log(trainerName);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newDate = new Date();
+    const hour = Time.split(":")[0];
+    const minute = Time.split(":")[1];
+    newDate.setHours(hour);
+    newDate.setMinutes(minute);
     try {
       const body = {
         classTitle: Title,
         description: Desc,
-        time: Time,
-        date: date,
+        dateNtime: newDate,
+        // trainerId: ,
+        tainerName: trainerName,
       };
-      // console.log(body);
+      console.log(body);
       const response = await addClassApi(body);
       console.log(response);
 
@@ -34,6 +54,10 @@ const AddClass = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    fetchTrainers();
+  }, []);
 
   return (
     <div className="addclassform">
@@ -106,7 +130,7 @@ const AddClass = () => {
               <label htmlFor="password" className="input-label">
                 Trainer
               </label>
-              <input
+              {/* <input
                 type="text"
                 name="trainer"
                 id="trainer"
@@ -115,8 +139,32 @@ const AddClass = () => {
                 autoComplete="off"
                 required
                 onChange={(e) => setTrainer(e.target.value)}
-              />
+              /> */}
+
+              <select
+                name="trainer"
+                id="trainer"
+                className="input-control"
+                onChange={(e) => setTrainerName(e.target.value)}
+              >
+                <option value="select">Select Trainer</option>
+                {Users.map((user, index) => {
+                  return (
+                    user.role === "trainer" && (
+                      <option key={index}>{user.name}</option>
+                    )
+                  );
+                })}
+              </select>
+              {/* {console.log(Trainers)} */}
             </div>
+
+            <div className="input-field">
+              <label htmlFor="tid" className="input-label">
+                TrainerID
+              </label>
+            </div>
+
             {/* <div className="flex-end">
           <Link to={"/Forgot"} className="link-end">
             Forgot password?

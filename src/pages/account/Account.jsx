@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Datatable from "../../components/datatable/Datatable";
 // import Datatable from "../../components/datatable/Datatable";
 import Navbar from "../../components/navbar/Navbar";
@@ -13,19 +13,48 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { changePassApi, loggedUserApi } from "../../service/auth.service";
+import { useNavigate } from "react-router-dom";
 
+let user;
+const getuser = localStorage.getItem("login_status");
+if (getuser && getuser.length) {
+  user = JSON.parse(getuser);
+  console.log(user);
+}
 
 const Account = () => {
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
 
-  const rows = [
-    {
-      name: "John",
-      email: "john@gmail.com",
-      mobileno: "1234567890",
-      address: "john Nagar",
-      gymplan: "1500 basic",
-    },
-  ];
+  let userInfo, info;
+
+  // const UserInfo = async () => {
+  //   userInfo = await loggedUserApi();
+  //   // console.log(userInfo);
+  //   // await localStorage.setItem("userInfo", JSON.stringify(useruser.user));
+  //   info = await JSON.parse(localStorage.getItem("login_status"));
+  //   console.log(info);
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const body = { password, confirmPassword };
+      console.log(body);
+      const response = await changePassApi(body);
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      alert("Server response failed ");
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => {
+  //   UserInfo();
+  // }, []);
 
   return (
     <div className="account">
@@ -38,32 +67,36 @@ const Account = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-              {/* <TableCell className="tableCell">Sr. No.</TableCell> */}
+                {/* <TableCell className="tableCell">Sr. No.</TableCell> */}
                 <TableCell className="tableCell">Name</TableCell>
                 <TableCell className="tableCell">Email</TableCell>
                 <TableCell className="tableCell">Mobile No.</TableCell>
                 <TableCell className="tableCell">Address</TableCell>
-                <TableCell className="tableCell">Gym plan</TableCell>
+                <TableCell className="tableCell">Role</TableCell>
+                <TableCell className="tableCell">Gym Plan</TableCell>
+                <TableCell className="tableCell">Salary</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
-                <TableRow key={row.id}>
-                  {/* <TableCell className="tableCell">{index+1}</TableCell> */}
-                  <TableCell className="tableCell">{row.name}</TableCell>
-                  <TableCell className="tableCell">{row.email}</TableCell>
-                  <TableCell className="tableCell">{row.mobileno}</TableCell>
-                  <TableCell className="tableCell">{row.address}</TableCell>
-                  <TableCell className="tableCell">{row.gymplan}</TableCell>
-                </TableRow>
-              ))}
+              {/* {rows.map((row, index) => ( */}
+              <TableRow>
+                {/* <TableCell className="tableCell">{index + 1}</TableCell> */}
+                <TableCell className="tableCell">{user.name}</TableCell>
+                <TableCell className="tableCell">{user.email}</TableCell>
+                <TableCell className="tableCell">{user.mobileNo}</TableCell>
+                <TableCell className="tableCell">{user.address}</TableCell>
+                <TableCell className="tableCell">{user.role}</TableCell>
+                <TableCell className="tableCell">{user.gymPlan}</TableCell>
+                <TableCell className="tableCell">{user.salary}</TableCell>
+              </TableRow>
+              {/* ))} */}
             </TableBody>
           </Table>
         </TableContainer>
 
         <div className="auth-body">
           <h1 className="auth-header-title">Forgot Password</h1>
-          <form className="auth-form-validation">
+          <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="password" className="input-label">
                 Password
@@ -76,6 +109,7 @@ const Account = () => {
                 placeholder="Password"
                 autoComplete="off"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -91,6 +125,7 @@ const Account = () => {
                 placeholder="confirm password"
                 autoComplete="off"
                 required
+                onChange={(e) => setconfirmPassword(e.target.value)}
               />
             </div>
 
