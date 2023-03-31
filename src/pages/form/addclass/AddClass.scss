@@ -3,8 +3,14 @@
   
     .formContainer {
       flex: 6;
+
+      h3{
+        margin: 20px 0px 0px 20px ;
+        color:blue;
+      }
+
       .auth-body{
-        padding: 2rem 0 0 18rem;
+        padding: 2rem 0 0 26rem;
         form select{
             width: 100%;
         }

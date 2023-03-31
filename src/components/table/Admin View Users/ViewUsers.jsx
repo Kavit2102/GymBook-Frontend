@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./ViewUsers.scss";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -30,10 +29,10 @@ const ViewUsers = () => {
       <Sidebar mode="admin" />
       <div className="trainersContainer">
         <Navbar />
-        <h3>View Users</h3>
+        <h3>Users Details</h3>
         <br />
         <TableContainer component={Paper} className="table">
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 550 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell className="tableCell">Sr. No.</TableCell>
@@ -44,10 +43,10 @@ const ViewUsers = () => {
                 <TableCell className="tableCell">Role</TableCell>
                 <TableCell className="tableCell">Gym Plan</TableCell>
                 <TableCell className="tableCell">Salary</TableCell>
+                <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {Customers.find((customer) => customer.role == "customer").map((customer, index) => ( */}
               {Customers.map((customer, index) => {
                 return (
                   <TableRow key={index}>
@@ -70,7 +69,7 @@ const ViewUsers = () => {
                       {customer.salary}
                     </TableCell>
                     <TableCell className="tableCell">
-                      <button>Delete</button>
+                      <button className="btn">Delete</button>
                     </TableCell>
                   </TableRow>
                 );

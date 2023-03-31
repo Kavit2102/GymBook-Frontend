@@ -21,10 +21,6 @@ const FeedbackForm = () => {
       const response = await createFeedBackApi(body);
       console.log(response);
 
-      // localStorage.setItem("login_status", JSON.stringify(response.user));
-      // let token = localStorage.setItem("token_status", response.token);
-      // console.log(token);
-
       alert("Feedback submission Successfull");
     } catch (error) {
       alert("Server response failed ");
@@ -37,8 +33,9 @@ const FeedbackForm = () => {
       <Sidebar mode="trainer" />
       <div className="formContainer">
         <Navbar />
+        <h3>Feedback Form</h3>
         <div className="auth-body">
-          <h1 className="auth-header-title">Feedback Form</h1>
+          
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="name" className="input-label">
@@ -75,7 +72,7 @@ const FeedbackForm = () => {
               <textarea
                 name="desc"
                 id="desc"
-                cols="62"
+                cols="57"
                 rows="5"
                 onChange={(e) => setFeedback(e.target.value)}
               ></textarea>

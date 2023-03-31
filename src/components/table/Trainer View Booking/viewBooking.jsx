@@ -13,23 +13,6 @@ import Paper from "@mui/material/Paper";
 import { getClassApi } from "../../../service/class.service";
 
 const ViewBooking = () => {
-  // const rows = [
-  //   {
-  //     name: "John",
-  //     email: "john@gmail.com",
-  //     mobileno: "1234567890",
-  //     address: "john Nagar",
-  //     gymplan: "1500 basic",
-  //   },
-  //   {
-  //     name: "John",
-  //     email: "john@gmail.com",
-  //     mobileno: "1234567890",
-  //     address: "john Nagar",
-  //     gymplan: "1500 basic",
-  //   },
-  // ];
-
   const [Classes, setClasses] = useState([]);
 
   const fetchClasses = async () => {
@@ -47,7 +30,6 @@ const ViewBooking = () => {
       <Sidebar mode="trainer" />
       <div className="bookingContainer">
         <Navbar />
-
         <h3>View Booking</h3>
         <br />
         <TableContainer component={Paper} className="table">
@@ -55,22 +37,31 @@ const ViewBooking = () => {
             <TableHead>
               <TableRow>
                 <TableCell className="tableCell">Sr. No.</TableCell>
-                <TableCell className="tableCell">Name</TableCell>
-                <TableCell className="tableCell">Email</TableCell>
-                <TableCell className="tableCell">Mobile No.</TableCell>
-                <TableCell className="tableCell">Address</TableCell>
-                <TableCell className="tableCell">Gym plan</TableCell>
+                <TableCell className="tableCell">Title</TableCell>
+                <TableCell className="tableCell">Description</TableCell>
+                <TableCell className="tableCell">Date</TableCell>
+                <TableCell className="tableCell">Time</TableCell>
+                <TableCell className="tableCell">Booked By -</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {Classes.map((Class, index) => (
                 <TableRow key={index}>
                   <TableCell className="tableCell">{index + 1}</TableCell>
-                  <TableCell className="tableCell">{Class.name}</TableCell>
-                  <TableCell className="tableCell">{Class.email}</TableCell>
-                  <TableCell className="tableCell">{Class.mobileNo}</TableCell>
-                  <TableCell className="tableCell">{Class.address}</TableCell>
-                  <TableCell className="tableCell">{Class.gymPlan}</TableCell>
+                  <TableCell className="tableCell">{Class.classTitle}</TableCell>
+                  <TableCell className="tableCell">{Class.description}</TableCell>
+                  <TableCell className="tableCell">
+                    {Class.date.toString().substring(0,10)}
+                  </TableCell>
+                  <TableCell className="tableCell">
+                    {Class.date.toString().substring(11,19)}
+                  </TableCell>
+                  <TableCell className="tableCell">
+                    Name: Name <br />
+                    Email: Email <br />
+                    Mobile No.: Mobile No. <br /> 
+                    Gym Plan: Gym Plan
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

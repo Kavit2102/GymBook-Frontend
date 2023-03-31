@@ -2,5 +2,10 @@
     display: flex;
     .bookingContainer{
         flex: 6;
+
+        h3{
+            margin: 20px 0px 0px 20px ;
+            color:blue;
+        }
     }
 }

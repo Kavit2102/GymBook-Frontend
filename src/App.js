@@ -2,8 +2,6 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Account from "./pages/account/Account";
-
 // admin
 import RegistrationForm from "./pages/form/registrationform/registrationForm";
 import AddClassForm from "./pages/form/addclass/AddClass";
@@ -14,8 +12,10 @@ import ViewFeedback from "./components/table/Admin View Feedbacks/viewFeedbacks"
 import ViewBooking from "./components/table/Trainer View Booking/viewBooking";
 import FeedbackFormC from "./pages/form/feedback Form customer/feedbackForm";
 import FeedbackFormT from "./pages/form/feedback Form trainer/feedbackForm";
-import ViewClasses from "./components/table/Customer view Classes/viewClasses";
+import ViewClasses from "./components/table/view Classes/viewClasses";
 import MyBooking from "./components/table/customer my booking/myBooking";
+
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Login />} />
-            <Route path="account" element={<Account />} />
+            <Route path="profile" element={<Profile />} />
 
             <Route path="admin">
               <Route exact index element={<Home mode="admin" />} />
@@ -59,15 +59,6 @@ function App() {
               <Route exact path="my-booking" element={<MyBooking />} />
               <Route exact path="feedback-form" element={<FeedbackFormC />} />
             </Route>
-
-            {/* <Route path="products">
-              <Route index element={<List mode="products"/>} />
-              <Route path=":productId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
-              />
-            </Route> */}
           </Route>
         </Routes>
       </BrowserRouter>

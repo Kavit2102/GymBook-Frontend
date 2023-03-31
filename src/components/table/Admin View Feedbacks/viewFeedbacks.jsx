@@ -30,7 +30,7 @@ const ViewFeedbacks = () => {
       <Sidebar mode="admin" />
       <div className="feedbacksContainer">
         <Navbar />
-        <h3>View Feedbacks</h3>
+        <h3>Feedback Details</h3>
         <br />
         <TableContainer component={Paper} className="table">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

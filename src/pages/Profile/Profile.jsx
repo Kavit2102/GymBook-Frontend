@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Datatable from "../../components/datatable/Datatable";
-// import Datatable from "../../components/datatable/Datatable";
+import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-// import List from "../list/List";
-import "./Account.scss";
+import "./Profile.scss";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,7 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { changePassApi, loggedUserApi } from "../../service/auth.service";
+import { changePassApi } from "../../service/auth.service";
 import { useNavigate } from "react-router-dom";
 
 let user;
@@ -23,20 +20,10 @@ if (getuser && getuser.length) {
   console.log(user);
 }
 
-const Account = () => {
+const Profile = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-
-  let userInfo, info;
-
-  // const UserInfo = async () => {
-  //   userInfo = await loggedUserApi();
-  //   // console.log(userInfo);
-  //   // await localStorage.setItem("userInfo", JSON.stringify(useruser.user));
-  //   info = await JSON.parse(localStorage.getItem("login_status"));
-  //   console.log(info);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,13 +39,9 @@ const Account = () => {
     }
   };
 
-  // useEffect(() => {
-  //   UserInfo();
-  // }, []);
-
   return (
     <div className="account">
-      <Sidebar mode="account" />
+      <Sidebar mode="profile" />
       <div className="accountContainer">
         <Navbar />
         <h3>Account Details</h3>
@@ -95,7 +78,7 @@ const Account = () => {
         </TableContainer>
 
         <div className="auth-body">
-          <h1 className="auth-header-title">Forgot Password</h1>
+          <h2>Forgot Password</h2>
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="password" className="input-label">
@@ -139,4 +122,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default Profile;

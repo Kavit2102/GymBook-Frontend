@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 
@@ -7,8 +7,9 @@ import { SignupApi } from "../../../service/auth.service";
 import "./registrationForm.scss";
 
 const UserForm = () => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Mobile, setMobile] = useState();
@@ -36,6 +37,7 @@ const UserForm = () => {
       const response = await SignupApi(body);
       console.log(response);
       alert("SignUp Successfull");
+      navigate(0);
     } catch (error) {
       alert("Server response failed ");
       console.log(error);
@@ -47,8 +49,9 @@ const UserForm = () => {
       <Sidebar mode="admin" />
       <div className="formContainer">
         <Navbar />
+        <h3>Registration Form</h3>
         <div className="auth-body">
-          <h1 className="auth-header-title">Registration Form</h1>
+          
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="name" className="input-label">
@@ -84,11 +87,13 @@ const UserForm = () => {
               </label>
               <input
                 onChange={(e) => setMobile(e.target.value)}
-                type="number"
+                type="tel"
                 className="input-control"
                 id="mob_no"
                 placeholder="Mobile"
                 autoComplete="off"
+                minLength={10}
+                maxLength={10}
                 required
               />
             </div>
@@ -150,8 +155,8 @@ const UserForm = () => {
                 onChange={(e) => setPlan(e.target.value)}
               >
                 <option value="select-plan">Select Gym Plan</option>
-                <option value="genaral">General</option>
-                <option value="genaral">Premium</option>
+                <option value="general">General</option>
+                <option value="premium">Premium</option>
               </select>
             </div>
 

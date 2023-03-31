@@ -21,10 +21,6 @@ const FeedbackForm = () => {
       const response = await createFeedBackApi(body);
       console.log(response);
 
-      // localStorage.setItem("login_status", JSON.stringify(response.user));
-      // let token = localStorage.setItem("token_status", response.token);
-      // console.log(token);
-
       alert("Feedback submission Successfull");
     } catch (error) {
       alert("Server response failed ");
@@ -37,11 +33,8 @@ const FeedbackForm = () => {
       <Sidebar mode="customer" />
       <div className="formContainer">
         <Navbar />
+        <h3>Feedback Form</h3>  
         <div className="auth-body">
-          <h1 className="auth-header-title">Feedback Form</h1>
-          {/* <p className="auth-header-subtitle">
-    Sign-in to your account and start the adventure
-  </p> */}
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="name" className="input-label">
@@ -78,27 +71,16 @@ const FeedbackForm = () => {
               <textarea
                 name="desc"
                 id="desc"
-                cols="62"
-                rows="5"
+                cols="55"
+                rows="3"
                 onChange={(e) => setFeedback(e.target.value)}
               ></textarea>
             </div>
 
-            {/* <div className="flex-end">
-      <Link to={"/Forgot"} className="link-end">
-        Forgot password?
-      </Link>
-    </div> */}
             <button type="submit" className="btn-submit">
               Submit
             </button>
           </form>
-          {/* <p className="text-center">
-    New on our platform?{" "}
-    <Link to={"/Signup"} className="link-text-center">
-      Create account here
-    </Link>
-  </p> */}
         </div>
       </div>
     </div>

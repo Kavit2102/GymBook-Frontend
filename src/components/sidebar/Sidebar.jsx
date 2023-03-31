@@ -6,12 +6,11 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/gym.png";
 
 const Sidebar = (props) => {
   const history = useNavigate();
-
   const navigate = useNavigate();
   const Back = () => {
     navigate(-1);
@@ -29,7 +28,7 @@ const Sidebar = (props) => {
       <div className="top">
         <Link style={{ textDecoration: "none" }}>
           <span className="logo">
-            <img src={Logo} alt="" height={35} />
+            <SportsGymnasticsIcon className="logoicon"/>
             <span>Gym Book</span>
           </span>
         </Link>
@@ -46,7 +45,7 @@ const Sidebar = (props) => {
             >
               <li>
                 <DynamicFormIcon className="icon" />
-                <span>Registration Form</span>
+                <span>User Registration</span>
               </li>
             </Link>
             <Link
@@ -55,31 +54,31 @@ const Sidebar = (props) => {
             >
               <li>
                 <DynamicFormIcon className="icon" />
-                <span>Add Classes Form</span>
+                <span>Add Classes</span>
               </li>
             </Link>
             <Link to="/admin/view-users" style={{ textDecoration: "none" }}>
               <li>
                 <ViewListIcon className="icon" />
-                <span>View Users</span>
+                <span>User Details</span>
               </li>
             </Link>
             <Link to="/admin/view-class" style={{ textDecoration: "none" }}>
               <li>
                 <ViewListIcon className="icon" />
-                <span>View Classes</span>
+                <span>Class Details</span>
               </li>
             </Link>
             <Link to="/admin/view-feedbacks" style={{ textDecoration: "none" }}>
               <li>
                 <FeedbackIcon className="icon" />
-                <span>View Feedbacks</span>
+                <span>Feedback Details</span>
               </li>
             </Link>
-            <Link to="/account" style={{ textDecoration: "none" }}>
+            <Link to="/profile" style={{ textDecoration: "none" }}>
               <li>
                 <PersonOutlineIcon className="icon" />
-                <span>Account</span>
+                <span>Profile</span>
               </li>
             </Link>
 
@@ -97,7 +96,7 @@ const Sidebar = (props) => {
             <Link to="/trainer/view-booking" style={{ textDecoration: "none" }}>
               <li>
                 <ViewListIcon className="icon" />
-                <span>View Booking</span>
+                <span>Booking Details</span>
               </li>
             </Link>
             <Link
@@ -107,14 +106,14 @@ const Sidebar = (props) => {
               {" "}
               <li>
                 <DynamicFormIcon className="icon" />
-                <span>Feedback Form</span>
+                <span>Add Feedback</span>
               </li>
             </Link>
-            <Link to={"/account"} style={{ textDecoration: "none" }}>
+            <Link to={"/profile"} style={{ textDecoration: "none" }}>
               {" "}
               <li>
                 <PersonOutlineIcon className="icon" />
-                <span>Account</span>
+                <span>Profile</span>
               </li>
             </Link>
 
@@ -141,7 +140,7 @@ const Sidebar = (props) => {
             <Link to="/customer/my-booking" style={{ textDecoration: "none" }}>
               <li>
                 <ViewListIcon className="icon" />
-                <span>My Booking</span>
+                <span>My Booking's</span>
               </li>
             </Link>
             <Link
@@ -150,13 +149,13 @@ const Sidebar = (props) => {
             >
               <li>
                 <FeedbackIcon className="icon" />
-                <span>Feedback Form</span>
+                <span>Add Feedback</span>
               </li>
             </Link>
-            <Link to={"/account"} style={{ textDecoration: "none" }}>
+            <Link to={"/profile"} style={{ textDecoration: "none" }}>
               <li>
                 <PersonOutlineIcon className="icon" />
-                <span>Account</span>
+                <span>Profile</span>
               </li>
             </Link>
 
@@ -169,7 +168,7 @@ const Sidebar = (props) => {
           </ul>
         )}
 
-        {props.mode === "account" && (
+        {props.mode === "profile" && (
           <ul>
             <Link onClick={Back} style={{ textDecoration: "none" }}>
               <li>

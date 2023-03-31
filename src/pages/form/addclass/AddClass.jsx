@@ -11,8 +11,12 @@ const AddClass = () => {
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [trainerName, setTrainerName] = useState("");
-  const [trainerId, setTrainerId] = useState("");
+  // const [trainerId, setTrainerId] = useState("");
   const [Users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchTrainers();
+  }, []);
 
   const fetchTrainers = async () => {
     let users = await fetchCustmersApi();
@@ -55,20 +59,13 @@ const AddClass = () => {
     }
   };
 
-  useEffect(() => {
-    fetchTrainers();
-  }, []);
-
   return (
     <div className="addclassform">
       <Sidebar mode="admin" />
       <div className="formContainer">
         <Navbar />
+        <h3>Add Class Form</h3>
         <div className="auth-body">
-          <h1 className="auth-header-title">Add Class Form</h1>
-          {/* <p className="auth-header-subtitle">
-        Sign-in to your account and start the adventure
-      </p> */}
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="title" className="input-label">

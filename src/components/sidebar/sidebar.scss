@@ -1,11 +1,11 @@
 .sidebar {
   flex: 1;
-  border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
-  background-color: white;
+  background-color: #1A2421;
+  max-width: 100vh;
 
   .top {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,16 +17,26 @@
       gap: 1rem;
       font-size: 25px;
       font-weight: bold;
-      color: #6439ff;
+      color: white;
+
+      .logoicon{
+        width: 40px;
+        height: 40px;
+        color: white;
+      }
     }
   }
 
   hr {
     height: 0;
+    margin-top: 30px;
+    margin-left: 35px;
+    width: 150px;
+    color: white;
   }
 
   .center {
-    padding-left: 4px;
+    margin-left: 2px;
 
     ul {
       list-style: none;
@@ -44,11 +54,11 @@
       li {
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 20px 0px;
         cursor: pointer;
 
         &:hover {
-          background-color: #ece8ff;
+          padding: 10px;
         }
 
         .icon {
@@ -59,18 +69,10 @@
         span{
             font-size: 20px;
             font-weight: 600;
-            color: #000;
+            color: white;
             margin-left: 10px;
         }
       }
     }
-  }
-
-  .bottom{
-      display: flex;
-      align-items: center;
-      margin: 10px;
-      text-decoration: none !important;
-      list-style: none;
   }
 }
