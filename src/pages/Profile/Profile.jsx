@@ -78,7 +78,7 @@ const Profile = () => {
         </TableContainer>
 
         <div className="auth-body">
-          <h2>Forgot Password</h2>
+          <h2>Change Password</h2>
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="password" className="input-label">

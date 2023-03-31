@@ -49,6 +49,14 @@ export async function loggedUserApi() {
   return response.data;
 }
 
+export async function deleteUserApi(id) {
+  console.log(id);
+  const response = await Axiosinstance.delete(`/deleteuser/${id}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}
+
 export async function changePassApi(body) {
   const response = await Axiosinstance.post("/changepassword", body, {
     headers: { "Content-Type": "application/json" },

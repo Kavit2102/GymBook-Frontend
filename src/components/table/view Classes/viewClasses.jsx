@@ -11,17 +11,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect } from "react";
+import moment from 'moment-timezone';
 import {
   bookClassApi,
   deleteClassApi,
   getClassApi,
 } from "../../../service/class.service";
+import { useNavigate } from "react-router-dom";
 
 const ViewClasses = ({ mode }) => {
+  const navigate = useNavigate();
   const [Classes, setClasses] = useState([]);
 
   const fetchClasses = async () => {
     const response = await getClassApi();
+    // await setClasses(response.allFutureClass);
     await setClasses(response.allClass);
     console.log(Classes);
   };
@@ -31,11 +35,11 @@ const ViewClasses = ({ mode }) => {
   }, []);
 
   const deleteClass = async (classTitle, _id) => {
-    // console.log(title + id);
     try {
       const body = { classTitle, _id };
       const response = await deleteClassApi(body);
       alert("Class Deleted Successfully");
+      navigate(0);
     } catch (error) {
       console.log(error);
       alert("Server Response Failed ");
@@ -43,14 +47,14 @@ const ViewClasses = ({ mode }) => {
   };
 
   const bookClass = async (classTitle, _id) => {
-    // e.preventDefault();
 
     try {
-      const body = await { _id, classTitle };
-      const response = await bookClassApi(body);
+      const response = await bookClassApi({classTitle, _id});
       console.log(response);
+      alert("Class Booking Successfull");
     } catch (error) {
       console.log(error);
+      alert("Server Response Failed");
     }
   };
 
@@ -88,10 +92,10 @@ const ViewClasses = ({ mode }) => {
                     {Class.trainerName}
                   </TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(0,10)}
+                    {moment(Class.date).tz("Asia/Kolkata").format('MMMM Do YYYY')}
                   </TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(11,19)}
+                  {moment(Class.date).tz("Asia/Kolkata").format('h:mm:ss a')}
                   </TableCell>
                   <TableCell className="tableCell">
                     {mode === "customer" && (

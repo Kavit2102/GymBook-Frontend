@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./viewBooking.scss";
-
+import moment from "moment-timezone";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -17,7 +17,7 @@ const ViewBooking = () => {
 
   const fetchClasses = async () => {
     const response = await getClassApi();
-    await setClasses(response.allClass);
+    await setClasses(response.trainerClass);
     console.log(Classes);
   };
 
@@ -51,13 +51,13 @@ const ViewBooking = () => {
                   <TableCell className="tableCell">{Class.classTitle}</TableCell>
                   <TableCell className="tableCell">{Class.description}</TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(0,10)}
+                    {moment(Class.date).tz("Asia/Kolkata").format('MMMM Do YYYY')}
                   </TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(11,19)}
+                  {moment(Class.date).tz("Asia/Kolkata").format('h:mm:ss a')}
                   </TableCell>
                   <TableCell className="tableCell">
-                    Name: Name <br />
+                    Name: <br />
                     Email: Email <br />
                     Mobile No.: Mobile No. <br /> 
                     Gym Plan: Gym Plan

@@ -4,14 +4,15 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import { fetchCustmersApi } from "../../../service/auth.service";
 import { addClassApi } from "../../../service/class.service";
 import "./AddClass.scss";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
+  const navigate = useNavigate();
   const [Title, setTitle] = useState("");
   const [Desc, setDesc] = useState("");
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [trainerName, setTrainerName] = useState("");
-  // const [trainerId, setTrainerId] = useState("");
   const [Users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -20,20 +21,15 @@ const AddClass = () => {
 
   const fetchTrainers = async () => {
     let users = await fetchCustmersApi();
-    await setUsers(users.allUser);
-    console.log(Users);
+    setUsers(users.allUser);
+    console.log(users);
   };
-
-  // const handleSelect = (e) => {
-  //   setTrainerName(e.target.value);
-  //   console.log(trainerName);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newDate = new Date();
-    const hour = Time.split(":")[0];
-    const minute = Time.split(":")[1];
+    let newDate = new Date(date);
+    let hour = Time.split(":")[0];
+    let minute = Time.split(":")[1];
     newDate.setHours(hour);
     newDate.setMinutes(minute);
     try {
@@ -41,18 +37,13 @@ const AddClass = () => {
         classTitle: Title,
         description: Desc,
         dateNtime: newDate,
-        // trainerId: ,
-        tainerName: trainerName,
+        trainerId: trainerName,
       };
       console.log(body);
       const response = await addClassApi(body);
       console.log(response);
-
-      // localStorage.setItem("login_status", JSON.stringify(response.user));
-      // let token = localStorage.setItem("token_status", response.token);
-      // console.log(token);
-
       alert("Feedback submission Successfull");
+      navigate(0);
     } catch (error) {
       alert("Server response failed ");
       console.log(error);
@@ -103,7 +94,6 @@ const AddClass = () => {
                 type="time"
                 className="input-control"
                 id="time"
-                placeholder="Mobile"
                 autoComplete="off"
                 required
                 onChange={(e) => setTime(e.target.value)}
@@ -117,7 +107,6 @@ const AddClass = () => {
                 type="date"
                 className="input-control"
                 id="date"
-                placeholder="Mobile"
                 autoComplete="off"
                 required
                 onChange={(e) => setDate(e.target.value)}
@@ -127,16 +116,6 @@ const AddClass = () => {
               <label htmlFor="password" className="input-label">
                 Trainer
               </label>
-              {/* <input
-                type="text"
-                name="trainer"
-                id="trainer"
-                className="input-control"
-                placeholder="Trainer"
-                autoComplete="off"
-                required
-                onChange={(e) => setTrainer(e.target.value)}
-              /> */}
 
               <select
                 name="trainer"
@@ -148,35 +127,17 @@ const AddClass = () => {
                 {Users.map((user, index) => {
                   return (
                     user.role === "trainer" && (
-                      <option key={index}>{user.name}</option>
+                      <option key={index} value={user._id}>{user.name}</option>
                     )
                   );
                 })}
               </select>
-              {/* {console.log(Trainers)} */}
             </div>
 
-            <div className="input-field">
-              <label htmlFor="tid" className="input-label">
-                TrainerID
-              </label>
-            </div>
-
-            {/* <div className="flex-end">
-          <Link to={"/Forgot"} className="link-end">
-            Forgot password?
-          </Link>
-        </div> */}
             <button type="submit" className="btn-submit">
               Submit
             </button>
           </form>
-          {/* <p className="text-center">
-        New on our platform?{" "}
-        <Link to={"/Signup"} className="link-text-center">
-          Create account here
-        </Link>
-      </p> */}
         </div>
       </div>
     </div>

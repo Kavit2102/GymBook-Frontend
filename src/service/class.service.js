@@ -29,7 +29,7 @@ export async function deleteClassApi(body) {
 }
 
 export async function deRegisterClassApi(body) {
-  const response = await Axiosinstance.post("/deleteclass", body, {
+  const response = await Axiosinstance.post("/deregisterclass", body, {
     headers: { "Content-Type": "application/json" },
   });
   return response.data;

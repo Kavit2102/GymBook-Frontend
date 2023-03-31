@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./mybooking.scss";
-
+import moment from "moment-timezone";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -20,7 +20,7 @@ const MyBooking = () => {
 
   const fetchClasses = async () => {
     const response = await getClassApi();
-    await setClasses(response.allClass);
+    await setClasses(response.userRegisteredClass);
     console.log(response);
   };
 
@@ -29,7 +29,7 @@ const MyBooking = () => {
     try {
       const body = { _id, classTitle };
       const response = await deRegisterClassApi(body);
-      // console.log(response);
+      console.log(response);
       alert("Class cancelled Successfully");
     } catch (error) {
       console.log(error);
@@ -75,10 +75,10 @@ const MyBooking = () => {
                     {Class.trainerName}
                   </TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(0,10)}
+                    {moment(Class.date).tz("Asia/Kolkata").format('MMMM Do YYYY')}
                   </TableCell>
                   <TableCell className="tableCell">
-                    {Class.date.toString().substring(11,19)}
+                  {moment(Class.date).tz("Asia/Kolkata").format('h:mm:ss a')}
                   </TableCell>
                   <TableCell className="tableCell">
                     <button
@@ -102,7 +102,7 @@ const MyBooking = () => {
               ))}
             </TableBody>
           </Table>
-        </TableContainer>{" "}
+        </TableContainer>
       </div>
     </div>
   );

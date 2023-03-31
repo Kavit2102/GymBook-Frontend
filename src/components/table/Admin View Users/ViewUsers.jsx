@@ -9,10 +9,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { fetchCustmersApi } from "../../../service/auth.service";
+import { deleteUserApi, fetchCustmersApi } from "../../../service/auth.service";
+import { useNavigate } from "react-router-dom";
 
 const ViewUsers = () => {
   const [Customers, setCustomers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCustomers();
@@ -23,6 +25,19 @@ const ViewUsers = () => {
     console.log(response);
     await setCustomers(response.allUser);
   };
+
+ const deleteUser = async (_id) => {
+  console.log(_id);
+    try {
+      const response = await deleteUserApi(_id);
+      console.log(response);
+      alert("User deleted");
+      navigate(0);
+    } catch (error) {
+      alert("No server response");
+    }
+  };
+
 
   return (
     <div className="view-trainers">
@@ -69,7 +84,7 @@ const ViewUsers = () => {
                       {customer.salary}
                     </TableCell>
                     <TableCell className="tableCell">
-                      <button className="btn">Delete</button>
+                      <button className="btn" onClick={()=>deleteUser(customer._id)}>Delete</button>
                     </TableCell>
                   </TableRow>
                 );

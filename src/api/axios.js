@@ -3,6 +3,7 @@ import axios from "axios";
 function getHeaders() {
   return {
     Authorization: `Bearer ${localStorage.getItem("token_status")}`,
+    "Content-Type": "application/json"
   };
 }
 
