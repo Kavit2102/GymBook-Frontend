@@ -46,6 +46,7 @@ const Signin = () => {
       .then((response) => {
         console.log(response);
         alert("Password changed successfully !!");
+        navigate("0");
       })
       .catch((error) => {
         console.log(error);

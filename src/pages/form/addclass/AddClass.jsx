@@ -42,7 +42,7 @@ const AddClass = () => {
       console.log(body);
       const response = await addClassApi(body);
       console.log(response);
-      alert("Feedback submission Successfull");
+      alert("Class added Successfully");
       navigate(0);
     } catch (error) {
       alert("Server response failed ");

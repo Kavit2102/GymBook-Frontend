@@ -13,17 +13,17 @@ import Paper from "@mui/material/Paper";
 import { changePassApi } from "../../service/auth.service";
 import { useNavigate } from "react-router-dom";
 
-let user;
-const getuser = localStorage.getItem("login_status");
-if (getuser && getuser.length) {
-  user = JSON.parse(getuser);
-  console.log(user);
-}
-
 const Profile = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+
+  let user;
+  const getuser = localStorage.getItem("login_status");
+  if (getuser && getuser.length) {
+    user = JSON.parse(getuser);
+    console.log(user);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const Profile = () => {
       console.log(body);
       const response = await changePassApi(body);
       console.log(response);
+      alert("Password Changed !!");
       navigate("/");
     } catch (error) {
       alert("Server response failed ");
