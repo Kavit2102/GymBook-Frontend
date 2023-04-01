@@ -82,20 +82,12 @@ const MyBooking = () => {
                   </TableCell>
                   <TableCell className="tableCell">
                     <button
-                      className="btn-Y"
-                      onClick={() =>
-                        deRegisterClass(Class.classTitle, Class._id)
-                      }
-                    >
-                      Reschedule
-                    </button>
-                    <button
                       className="btn-R"
                       onClick={() =>
                         deRegisterClass(Class.classTitle, Class._id)
                       }
                     >
-                      Cancel
+                      Cancel Booking
                     </button>
                   </TableCell>
                 </TableRow>

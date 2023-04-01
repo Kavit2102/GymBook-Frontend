@@ -82,3 +82,44 @@
     width: 60%;
   }
 
+  .forgotPassButton{
+    text-decoration: underline;
+    color: #5960e6;
+    cursor: pointer;
+    position: relative;
+    margin-top: 5px;
+  }
+
+
+.content{
+  h3{
+    margin: 5px 0px 0px 5px ;
+    color:blue;
+  }
+
+  .input-field{
+    margin-left: 10px;
+  }
+}
+
+.modal {
+    .btn-S{
+        background-color: #50C878;
+        color: white;
+        border: none;
+        margin-left: 5px;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-R{
+        background-color: red;
+        color: white;
+        border: none;
+        margin-left: 5px;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}

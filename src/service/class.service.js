@@ -35,9 +35,10 @@ export async function deRegisterClassApi(body) {
   return response.data;
 }
 
-// export async function getTrainers() {
-//   const response = await Axiosinstance.get("/addclass", body, {
-//     headers: { "Content-Type": "application/json" },
-//   });
-//   return response.data;
-// }
+export async function UpdateClassDT(body) {
+  console.log(body);
+  const response = await Axiosinstance.post("/rescheduleclass", body, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}

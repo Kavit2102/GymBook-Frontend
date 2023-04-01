@@ -10,10 +10,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { getClassApi } from "../../../service/class.service";
+import { UpdateClassDT, getClassApi } from "../../../service/class.service";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { useNavigate } from "react-router-dom";
 
 const ViewBooking = () => {
+  const navigate = useNavigate();
   const [Classes, setClasses] = useState([]);
+
+  const [Time, setTime] = useState("");
+  const [date, setDate] = useState("");
 
   const fetchClasses = async () => {
     const response = await getClassApi();
@@ -24,6 +31,29 @@ const ViewBooking = () => {
   useEffect(() => {
     fetchClasses();
   }, []);
+
+  const updateClassDnT = async (_id) =>{
+    console.log(_id);
+    let newDate = new Date(date);
+    let hour = Time.split(":")[0];
+    let minute = Time.split(":")[1];
+    newDate.setHours(hour);
+    newDate.setMinutes(minute);
+    try {
+      const body = {
+        classId: _id,
+        dateNtime: newDate,
+      };
+      console.log(body);
+      const response = await UpdateClassDT(body);
+      console.log(response);
+      alert("Feedback submission Successfull");
+      navigate(0);
+    } catch (error) {
+      alert("Server response failed ");
+      console.log(error);
+    }
+  };
 
   return (
     <div className="view-booking">
@@ -41,26 +71,144 @@ const ViewBooking = () => {
                 <TableCell className="tableCell">Description</TableCell>
                 <TableCell className="tableCell">Date</TableCell>
                 <TableCell className="tableCell">Time</TableCell>
-                <TableCell className="tableCell">Booked By -</TableCell>
+                <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {Classes.map((Class, index) => (
+              {Classes.map((session, index) => (
                 <TableRow key={index}>
                   <TableCell className="tableCell">{index + 1}</TableCell>
-                  <TableCell className="tableCell">{Class.classTitle}</TableCell>
-                  <TableCell className="tableCell">{Class.description}</TableCell>
                   <TableCell className="tableCell">
-                    {moment(Class.date).tz("Asia/Kolkata").format('MMMM Do YYYY')}
+                    {session.classTitle}
                   </TableCell>
                   <TableCell className="tableCell">
-                  {moment(Class.date).tz("Asia/Kolkata").format('h:mm:ss a')}
+                    {session.description}
                   </TableCell>
                   <TableCell className="tableCell">
-                    Name: <br />
-                    Email: Email <br />
-                    Mobile No.: Mobile No. <br /> 
-                    Gym Plan: Gym Plan
+                    {moment(session.date)
+                      .tz("Asia/Kolkata")
+                      .format("MMMM Do YYYY")}
+                  </TableCell>
+                  <TableCell className="tableCell">
+                    {moment(session.date)
+                      .tz("Asia/Kolkata")
+                      .format("h:mm:ss a")}
+                  </TableCell>
+                  <TableCell>
+                    <Popup
+                      trigger={
+                        <button
+                          className="btn-Y"
+                        >
+                          Reschedule
+                        </button>
+                      }
+                      modal
+                      nested
+                    >
+                      {(close) => (
+                        <div className="modal">
+                          <div className="content">
+                            <h3>Reschedule Class</h3>
+                            <div className="input-field">
+                                    <label
+                                      htmlFor="time"
+                                      className="input-label"
+                                    >
+                                      Time
+                                    </label>
+                                    <input
+                                      type="time"
+                                      className="input-control"
+                                      id="time"
+                                      autoComplete="off"
+                                      required
+                                      onChange={(e) => setTime(e.target.value)}
+                                    />
+                                  </div>
+                                  <div className="input-field">
+                                    <label
+                                      htmlFor="time"
+                                      className="input-label"
+                                    >
+                                      Date
+                                    </label>
+                                    <input
+                                      type="date"
+                                      className="input-control"
+                                      id="date"
+                                      autoComplete="off"
+                                      required
+                                      onChange={(e) => setDate(e.target.value)}
+                                    />
+                                  </div>
+
+                          </div>
+                          <div>
+                            <button className="btn-S" 
+                            onClick={() => 
+                              {updateClassDnT(session._id)}
+                            }
+                            >
+                              Submit
+                            </button>
+                            <button className="btn-R" onClick={() => close()}>
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </Popup>
+
+                    <Popup
+                      trigger={
+                        <button
+                          className="btn-G"
+                        >
+                          View Bookings
+                        </button>
+                      }
+                      modal
+                      nested
+                    >
+                      {(close) => (
+                        <div className="modal">
+                          <div className="content">
+                            <h3>View Bookings</h3>
+                            <TableContainer component={Paper} className="table">
+                              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                <TableHead>
+                                  <TableRow>
+                                    <TableCell className="tableCell">Sr. No.</TableCell>
+                                    <TableCell className="tableCell">Name</TableCell>
+                                    <TableCell className="tableCell">Email</TableCell>
+                                    <TableCell className="tableCell">Mobile No.</TableCell>
+                                    <TableCell className="tableCell">Gym Plan</TableCell>
+                                  </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {session.memberId.map((detail, index) => (
+                                  <TableRow key={index}>
+                                    <TableCell className="tableCell">{index+1}</TableCell>
+                                    <TableCell className="tableCell">{detail.name}</TableCell>
+                                    <TableCell className="tableCell">{detail.email}</TableCell>
+                                    <TableCell className="tableCell">{detail.mobileNo}</TableCell>
+                                    <TableCell className="tableCell">{detail.gymPlan}</TableCell>
+                                  </TableRow>
+                                ))}
+                                </TableBody>
+                              </Table>
+                            </TableContainer>         
+                          </div>
+                          <br />
+                          <div>
+                            <button className="btn-R" onClick={() => close()}>
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </Popup>
                   </TableCell>
                 </TableRow>
               ))}

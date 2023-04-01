@@ -22,7 +22,6 @@ const ViewUsers = () => {
 
   const fetchCustomers = async () => {
     const response = await fetchCustmersApi();
-    console.log(response);
     await setCustomers(response.allUser);
   };
 
@@ -30,7 +29,6 @@ const ViewUsers = () => {
   console.log(_id);
     try {
       const response = await deleteUserApi(_id);
-      console.log(response);
       alert("User deleted");
       navigate(0);
     } catch (error) {

@@ -21,7 +21,6 @@ const ViewFeedbacks = () => {
 
   const fetchFeedbacks = async () => {
     const response = await getFeedBackApi();
-    // console.log(response);
     await setFeedbacks(response.data);
   };
 

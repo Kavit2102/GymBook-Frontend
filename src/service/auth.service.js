@@ -50,7 +50,6 @@ export async function loggedUserApi() {
 }
 
 export async function deleteUserApi(id) {
-  console.log(id);
   const response = await Axiosinstance.delete(`/deleteuser/${id}`, {
     headers: { "Content-Type": "application/json" },
   });
@@ -59,6 +58,15 @@ export async function deleteUserApi(id) {
 
 export async function changePassApi(body) {
   const response = await Axiosinstance.post("/changepassword", body, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}
+
+
+export async function forgetPasswordApi(body) {
+  console.log(body);
+  const response = await Axiosinstance.post("/forgetpassword", body, {
     headers: { "Content-Type": "application/json" },
   });
   return response.data;
