@@ -71,6 +71,7 @@ const ViewBooking = () => {
                 <TableCell className="tableCell">Description</TableCell>
                 <TableCell className="tableCell">Date</TableCell>
                 <TableCell className="tableCell">Time</TableCell>
+                <TableCell className="tableCell">Duration</TableCell>
                 <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
@@ -94,6 +95,7 @@ const ViewBooking = () => {
                       .tz("Asia/Kolkata")
                       .format("h:mm:ss a")}
                   </TableCell>
+                  <TableCell className="tableCell">{session.duration}</TableCell>
                   <TableCell>
                     <Popup
                       trigger={
@@ -183,7 +185,6 @@ const ViewBooking = () => {
                                     <TableCell className="tableCell">Name</TableCell>
                                     <TableCell className="tableCell">Email</TableCell>
                                     <TableCell className="tableCell">Mobile No.</TableCell>
-                                    <TableCell className="tableCell">Gym Plan</TableCell>
                                   </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -193,7 +194,6 @@ const ViewBooking = () => {
                                     <TableCell className="tableCell">{detail.name}</TableCell>
                                     <TableCell className="tableCell">{detail.email}</TableCell>
                                     <TableCell className="tableCell">{detail.mobileNo}</TableCell>
-                                    <TableCell className="tableCell">{detail.gymPlan}</TableCell>
                                   </TableRow>
                                 ))}
                                 </TableBody>

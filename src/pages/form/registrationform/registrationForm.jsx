@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../../components/navbar/Navbar";
-
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { SignupApi } from "../../../service/auth.service";
 import "./registrationForm.scss";
@@ -16,8 +14,8 @@ const UserForm = () => {
   const [Password, setPassword] = useState("");
   const [Role, setRole] = useState("");
   const [Address, setAddress] = useState("");
-  const [Plan, setPlan] = useState("");
-  const [Salary, setSalary] = useState();
+  // const [Plan, setPlan] = useState("");
+  // const [Salary, setSalary] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +28,8 @@ const UserForm = () => {
         address: Address,
         password: Password,
         role: Role,
-        gymPlan: Plan,
-        salary: Salary,
+        // gymPlan: Plan,
+        // salary: Salary,
       };
       // console.log(body);
       const response = await SignupApi(body);
@@ -48,7 +46,6 @@ const UserForm = () => {
     <div className="regform">
       <Sidebar mode="admin" />
       <div className="formContainer">
-        <Navbar />
         <h3>Registration Form</h3>
         <div className="auth-body">
           
@@ -143,7 +140,7 @@ const UserForm = () => {
               </select>
             </div>
 
-            <div className="input-field">
+            {/* <div className="input-field">
               <label htmlFor="gymplan" className="input-label">
                 Gym Plans
               </label>
@@ -171,7 +168,7 @@ const UserForm = () => {
                 disabled={Role === "customer" ? true : false}
                 onChange={(e) => setSalary(e.target.value)}
               />
-            </div>
+            </div> */}
             <button type="submit" className="btn-submit">
               Submit
             </button>

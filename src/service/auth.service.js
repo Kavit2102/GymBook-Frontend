@@ -71,3 +71,11 @@ export async function forgetPasswordApi(body) {
   });
   return response.data;
 }
+
+export async function updateUserDetails(body) {
+  console.log(body);
+  const response = await Axiosinstance.post("/updateprofile", body, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.data;
+}

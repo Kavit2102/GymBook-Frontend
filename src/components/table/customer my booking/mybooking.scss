@@ -8,6 +8,12 @@
             color:blue;
         }
 
+        .table{
+            background-color: #F3F9FB;
+            max-width: 95%;
+            margin-left: 35px;
+        }
+
         .btn-R{
             background-color: red;
             color: white;
@@ -19,4 +25,9 @@
         }
         
     }
+}
+
+#popup-2{
+    border-radius: 10px !important;
+    background-color:#F3F9FB !important;
 }

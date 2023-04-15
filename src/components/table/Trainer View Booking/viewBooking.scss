@@ -7,6 +7,12 @@
             margin: 20px 0px 0px 20px ;
             color:blue;
         }
+        
+        .table{
+            background-color: #F3F9FB;
+            max-width: 95%;
+            margin-left: 35px;
+        }
 
         .btn-Y{
             background-color: yellowgreen;
@@ -56,4 +62,11 @@
         border-radius: 5px;
     }
 }
+
+#popup-2, #popup-4{
+    border-radius: 10px !important;
+    background-color:#F3F9FB !important;
+}
+
+
 

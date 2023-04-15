@@ -43,3 +43,50 @@
     }
   }
 }
+
+
+.navbar1 {
+  height: 67px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  background-color: #113F67;
+
+  .wrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+      padding: 3px;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+
+        &::placeholder {
+          font-size: 15px;
+        }
+      }
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      position: relative;
+
+        .avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+    }
+  }
+}

@@ -12,6 +12,8 @@ const AddClass = () => {
   const [Desc, setDesc] = useState("");
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
+  const [duration, setDuration] = useState("");
+
   const [trainerName, setTrainerName] = useState("");
   const [Users, setUsers] = useState([]);
 
@@ -38,6 +40,7 @@ const AddClass = () => {
         description: Desc,
         dateNtime: newDate,
         trainerId: trainerName,
+        duration: duration,
       };
       console.log(body);
       const response = await addClassApi(body);
@@ -80,7 +83,7 @@ const AddClass = () => {
                 type="text"
                 className="input-control"
                 id="desc"
-                placeholder=""
+                placeholder="Class Description"
                 autoComplete="off"
                 required
                 onChange={(e) => setDesc(e.target.value)}
@@ -110,6 +113,20 @@ const AddClass = () => {
                 autoComplete="off"
                 required
                 onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="duration" className="input-label">
+                Duration
+              </label>
+              <input
+                type="text"
+                className="input-control"
+                id="duration"
+                placeholder="Class Duration"
+                autoComplete="off"
+                required
+                onChange={(e) => setDuration(e.target.value)}
               />
             </div>
             <div className="input-field">

@@ -26,15 +26,15 @@ const ViewClasses = ({ mode }) => {
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
 
+  useEffect(() => {
+    fetchClasses();
+  },[]);
+
   const fetchClasses = async () => {
     const response = await getClassApi();
     await setClasses(response.allFutureClass);
     console.log(Classes);
   };
-
-  useEffect(() => {
-    fetchClasses();
-  });
 
   const deleteClass = async (classTitle, _id) => {
     try {
@@ -99,6 +99,7 @@ const ViewClasses = ({ mode }) => {
                 <TableCell className="tableCell">Trainer</TableCell>
                 <TableCell className="tableCell">Date</TableCell>
                 <TableCell className="tableCell">Time</TableCell>
+                <TableCell className="tableCell">Duration</TableCell>
                 <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
@@ -122,6 +123,9 @@ const ViewClasses = ({ mode }) => {
                   </TableCell>
                   <TableCell className="tableCell">
                     {moment(Class.date).tz("Asia/Kolkata").format("h:mm:ss a")}
+                  </TableCell>
+                  <TableCell className="tableCell">
+                    {Class.duration}
                   </TableCell>
                   <TableCell className="tableCell">
                     {mode === "customer" && (

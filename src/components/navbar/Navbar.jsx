@@ -4,7 +4,10 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 const Navbar = (props) => {
 
   return (
-    <div className="navbar" id="admin">
+    <>
+    {props.mode === "admin" && (
+
+    <div className="navbar1" id="admin">
       <div className="wrapper">
         <div className="search">
           <input type="" placeholder="Search..." />
@@ -19,6 +22,8 @@ const Navbar = (props) => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

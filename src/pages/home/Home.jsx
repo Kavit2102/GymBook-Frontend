@@ -7,7 +7,6 @@ const Home = (props) => {
     <div className="home">
       <Sidebar mode={props.mode}/>
       <div className="homeContainer">
-        <Navbar />
         <div className="listContainer">
           <div className="listTitle">
             {props.mode === "admin" && <h1>Admin Dashboard</h1>}

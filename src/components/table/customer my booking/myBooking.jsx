@@ -11,12 +11,22 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
+  UpdateClassDT,
   deRegisterClassApi,
   getClassApi,
 } from "../../../service/class.service";
 
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import {useNavigate } from "react-router-dom";
+
 const MyBooking = () => {
+
+  const navigate = useNavigate();
   const [Classes, setClasses] = useState([]);
+
+  const [Time, setTime] = useState("");
+  const [date, setDate] = useState("");
 
   const fetchClasses = async () => {
     const response = await getClassApi();
@@ -40,6 +50,29 @@ const MyBooking = () => {
   useEffect(() => {
     fetchClasses();
   }, []);
+
+  const updateClassDnT = async (_id) => {
+    console.log(_id);
+    let newDate = new Date(date);
+    let hour = Time.split(":")[0];
+    let minute = Time.split(":")[1];
+    newDate.setHours(hour);
+    newDate.setMinutes(minute);
+    try {
+      const body = {
+        classId: _id,
+        dateNtime: newDate,
+      };
+      console.log(body);
+      const response = await UpdateClassDT(body);
+      console.log(response);
+      alert("Class Rescheduled");
+      navigate(0);
+    } catch (error) {
+      alert("Server response failed ");
+      console.log(error);
+    }
+  };
 
   return (
     <div className="mybooking">
@@ -81,6 +114,64 @@ const MyBooking = () => {
                   {moment(Class.date).tz("Asia/Kolkata").format('h:mm:ss a')}
                   </TableCell>
                   <TableCell className="tableCell">
+                  <Popup
+                          trigger={
+                            <button className="btn-Y">Reschedule</button>
+                          }
+                          modal
+                          nested
+                        >
+                          {(close) => (
+                            <div className="modal">
+                              <div className="content">
+                                <h3>Reschedule Class</h3>
+                                <div className="input-field">
+                                  <label htmlFor="time" className="input-label">
+                                    Time
+                                  </label>
+                                  <input
+                                    type="time"
+                                    className="input-control"
+                                    id="time"
+                                    autoComplete="off"
+                                    required
+                                    onChange={(e) => setTime(e.target.value)}
+                                  />
+                                </div>
+                                <div className="input-field">
+                                  <label htmlFor="time" className="input-label">
+                                    Date
+                                  </label>
+                                  <input
+                                    type="date"
+                                    className="input-control"
+                                    id="date"
+                                    autoComplete="off"
+                                    required
+                                    onChange={(e) => setDate(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <button
+                                  className="btn-S"
+                                  onClick={() => {
+                                    updateClassDnT(Class._id);
+                                  }}
+                                >
+                                  Submit
+                                </button>
+                                <button
+                                  className="btn-R"
+                                  onClick={() => close()}
+                                >
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </Popup>
+
                     <button
                       className="btn-R"
                       onClick={() =>

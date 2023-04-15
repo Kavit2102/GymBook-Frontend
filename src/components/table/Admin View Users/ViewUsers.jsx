@@ -54,8 +54,8 @@ const ViewUsers = () => {
                 <TableCell className="tableCell">Mobile No.</TableCell>
                 <TableCell className="tableCell">Address</TableCell>
                 <TableCell className="tableCell">Role</TableCell>
-                <TableCell className="tableCell">Gym Plan</TableCell>
-                <TableCell className="tableCell">Salary</TableCell>
+                {/* <TableCell className="tableCell">Gym Plan</TableCell>
+                <TableCell className="tableCell">Salary</TableCell> */}
                 <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
@@ -75,12 +75,12 @@ const ViewUsers = () => {
                       {customer.address}
                     </TableCell>
                     <TableCell className="tableCell">{customer.role}</TableCell>
-                    <TableCell className="tableCell">
+                    {/* <TableCell className="tableCell">
                       {customer.gymPlan}
                     </TableCell>
                     <TableCell className="tableCell">
                       {customer.salary}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell className="tableCell">
                       <button className="btn" onClick={()=>deleteUser(customer._id)}>Delete</button>
                     </TableCell>
