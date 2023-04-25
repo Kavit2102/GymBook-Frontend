@@ -10,6 +10,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import moment from "moment-timezone";
+/**
+ * This module provides functions for interacting with the class API.
+ * It exports functions for updating, creating, deleting, and retrieving classes.
+ * It imports the necessary functions from the class service module.
+ */
 import {
   UpdateClassDT,
   bookClassApi,
@@ -21,11 +26,21 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const ViewClasses = ({ mode }) => {
+  // /**
+  //  * A React functional component that initializes state variables for Classes, Time, and date,
+  //  * and provides a navigate function using the useNavigate hook from the React Router library.
+  //  * @returns None
+  //  */
   const navigate = useNavigate();
   const [Classes, setClasses] = useState([]);
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
 
+  // /**
+  //  * Runs the fetchClasses function when the component mounts. 
+  //  * fetchClasses is an asynchronous function that retrieves class data from an API and sets the state of the component with the response.
+  //  * @returns None
+  //  */
   useEffect(() => {
     fetchClasses();
   },[]);
@@ -36,6 +51,13 @@ const ViewClasses = ({ mode }) => {
     console.log(Classes);
   };
 
+  // /**
+  //  * Deletes a class from the database using the deleteClassApi function.
+  //  * @param {{string}} classTitle - the title of the class to be deleted
+  //  * @param {{string}} _id - the id of the class to be deleted
+  //  * @returns None
+  //  * @throws Will throw an error if the server response fails.
+  //  */
   const deleteClass = async (classTitle, _id) => {
     try {
       const body = { classTitle, _id };
@@ -48,6 +70,14 @@ const ViewClasses = ({ mode }) => {
     }
   };
 
+  // /**
+  //  * Books a class with the given class title and ID by making an API call to the server.
+  //  * @param {{string}} classTitle - The title of the class to book.
+  //  * @param {{string}} _id - The ID of the class to book.
+  //  * @returns None
+  //  * @throws Will throw an error if the server response fails.
+  //  */
+
   const bookClass = async (classTitle, _id) => {
     try {
       const response = await bookClassApi({ classTitle, _id });
@@ -59,6 +89,11 @@ const ViewClasses = ({ mode }) => {
     }
   };
 
+  // /**
+  //  * Updates the date and time of a class with the given ID.
+  //  * @param {{string}} _id - The ID of the class to update.
+  //  * @returns None
+  //  */
   const updateClassDnT = async (_id) => {
     console.log(_id);
     let newDate = new Date(date);
@@ -128,6 +163,14 @@ const ViewClasses = ({ mode }) => {
                     {Class.duration}
                   </TableCell>
                   <TableCell className="tableCell">
+                    {/* /**
+                     * Renders a "Book Now" button if the mode is set to "customer".
+                     * @param {{string}} mode - The current mode of the component.
+                     * @param {{string}} Class.classTitle - The title of the class being booked.
+                     * @param {{string}} Class._id - The ID of the class being booked.
+                     * @param {{function}} bookClass - A function to handle the booking of the class.
+                     * @returns A button component that, when clicked, will book the class.
+                     */}
                     {mode === "customer" && (
                       <button
                         className="btn-G"

@@ -13,29 +13,34 @@ import { deleteUserApi, fetchCustmersApi } from "../../../service/auth.service";
 import { useNavigate } from "react-router-dom";
 
 const ViewUsers = () => {
+  // declare a state variable named "Customers" and a function "setCustomers" to update it
   const [Customers, setCustomers] = useState([]);
+  // declare a navigate variable for the routing
   const navigate = useNavigate();
 
+  // load the list of customers from the backend when the component mounts
   useEffect(() => {
     fetchCustomers();
   }, []);
 
+  // fetch the list of customers from the backend and update the state
   const fetchCustomers = async () => {
     const response = await fetchCustmersApi();
     await setCustomers(response.allUser);
   };
 
- const deleteUser = async (_id) => {
-  console.log(_id);
+  // delete a customer from the backend and update the state
+  const deleteUser = async (_id) => {
+    console.log(_id);
     try {
       const response = await deleteUserApi(_id);
       alert("User deleted");
+      // navigate to the current page to refresh the list of customers
       navigate(0);
     } catch (error) {
       alert("No server response");
     }
   };
-
 
   return (
     <div className="view-trainers">
@@ -54,12 +59,11 @@ const ViewUsers = () => {
                 <TableCell className="tableCell">Mobile No.</TableCell>
                 <TableCell className="tableCell">Address</TableCell>
                 <TableCell className="tableCell">Role</TableCell>
-                {/* <TableCell className="tableCell">Gym Plan</TableCell>
-                <TableCell className="tableCell">Salary</TableCell> */}
                 <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
+              {/* Render a table row for each customer */}
               {Customers.map((customer, index) => {
                 return (
                   <TableRow key={index}>
@@ -75,12 +79,6 @@ const ViewUsers = () => {
                       {customer.address}
                     </TableCell>
                     <TableCell className="tableCell">{customer.role}</TableCell>
-                    {/* <TableCell className="tableCell">
-                      {customer.gymPlan}
-                    </TableCell>
-                    <TableCell className="tableCell">
-                      {customer.salary}
-                    </TableCell> */}
                     <TableCell className="tableCell">
                       <button className="btn" onClick={()=>deleteUser(customer._id)}>Delete</button>
                     </TableCell>

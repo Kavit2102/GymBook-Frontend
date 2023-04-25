@@ -1,3 +1,9 @@
+/**
+ */
+// /**
+//  * A component that renders a registration form with a sidebar.
+//  * @returns JSX element that contains the registration form and sidebar.
+//  */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../components/sidebar/Sidebar";
@@ -8,15 +14,27 @@ const UserForm = () => {
 
   const navigate = useNavigate();
   
+  /**
+   */
+  // /**
+  //  * A component that uses the useState hook to manage state for a form with fields for
+  //  * name, email, mobile, password, role, and address.
+  //  * @returns An array of stateful values and their corresponding setter functions.
+  //  * The values are: Name, Email, Mobile, Password, Role, and Address.
+  //  */
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Mobile, setMobile] = useState();
   const [Password, setPassword] = useState("");
   const [Role, setRole] = useState("");
   const [Address, setAddress] = useState("");
-  // const [Plan, setPlan] = useState("");
-  // const [Salary, setSalary] = useState();
 
+  /**
+   * Handles the form submission for user sign up. Sends a POST request to the server with the user's
+   * information and displays an alert message upon success or failure.
+   * @param {{Event}} e - the form submission event
+   * @returns None
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,8 +46,6 @@ const UserForm = () => {
         address: Address,
         password: Password,
         role: Role,
-        // gymPlan: Plan,
-        // salary: Salary,
       };
       // console.log(body);
       const response = await SignupApi(body);
@@ -49,6 +65,17 @@ const UserForm = () => {
         <h3>Registration Form</h3>
         <div className="auth-body">
           
+          {/* /**
+           * A form component for user registration. The form includes input fields for name, email, mobile number,
+           * address, password, and role. The form also includes validation for each input field and a submit button.
+           * @param {Function} handleSubmit - A function to handle the form submission.
+           * @param {Function} setName - A function to set the name input value.
+           * @param {Function} setEmail - A function to set the email input value.
+           * @param {Function} setMobile - A function to set the mobile number input value.
+           * @param {Function} setAddress - A function to set the address input value.
+           * @param {Function} setPassword - A function to set the password input value.
+           * @param
+           */}
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
               <label htmlFor="name" className="input-label">
@@ -139,36 +166,6 @@ const UserForm = () => {
                 <option value="trainer">Trainer</option>
               </select>
             </div>
-
-            {/* <div className="input-field">
-              <label htmlFor="gymplan" className="input-label">
-                Gym Plans
-              </label>
-              <select
-                disabled={Role === "trainer" ? true : false}
-                className="input-control"
-                name="gymplan"
-                id="gymplan"
-                onChange={(e) => setPlan(e.target.value)}
-              >
-                <option value="select-plan">Select Gym Plan</option>
-                <option value="general">General</option>
-                <option value="premium">Premium</option>
-              </select>
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="salary" className="input-label">
-                Salary
-              </label>
-              <input
-                type="number"
-                name="salary"
-                id="salary"
-                disabled={Role === "customer" ? true : false}
-                onChange={(e) => setSalary(e.target.value)}
-              />
-            </div> */}
             <button type="submit" className="btn-submit">
               Submit
             </button>

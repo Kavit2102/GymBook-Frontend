@@ -1,13 +1,24 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "./Login.scss";
 import LOGO from "../../images/gym1.png";
 import { LoginApi, forgetPasswordApi } from "../../service/auth.service";
+/**
+ * Imports the Popup component from the 'reactjs-popup' library.
+ */
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const Signin = () => {
+  // /**
+  //  * A React functional component that handles user authentication and navigation.
+  //  * @returns None
+  //  */
   const navigate = useNavigate();
+  // /**
+  //  * A React functional component that sets up state variables for email, password, new email, new password, and confirm password.
+  //  * @returns None
+  //  */
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [NewEmail, setNewEmail] = useState("");
@@ -28,6 +39,11 @@ const Signin = () => {
 
       alert("Login Successfull");
 
+      // /**
+      //  * Determines the user's role and navigates to the appropriate page.
+      //  * @param {{response}} response - The response object containing the user's role.
+      //  * @returns None
+      //  */
       if (response.user.role === "admin") {
         navigate("/admin");
       } else if (response.user.role === "trainer") {
@@ -40,6 +56,11 @@ const Signin = () => {
     }
   };
 
+  // /**
+  //  * Sends a request to the server to change the user's password.
+  //  * @param {{Event}} e - The event object.
+  //  * @returns None
+  //  */
   const forgetPassword = async (e) => {
     const body = {email: NewEmail, password:NewPassword,confirmPassword: ConfirmPassword };
     await forgetPasswordApi(body)

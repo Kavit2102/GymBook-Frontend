@@ -1,3 +1,7 @@
+// /**
+//  * A React component that renders a feedback form with a navbar and sidebar.
+//  * @returns The rendered feedback form component.
+//  */
 import React, { useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
@@ -5,10 +9,20 @@ import { createFeedBackApi } from "../../../service/auth.service";
 import "./feedbackForm.scss";
 
 const FeedbackForm = () => {
+  /**
+   * A React functional component that initializes three state variables: Name, Email, and Feedback.
+   * Name and Email are initialized to an empty string, while Feedback is initialized to an empty string.
+   * These state variables can be updated using the corresponding set functions.
+   */
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Feedback, setFeedback] = useState("");
 
+  // /**
+  //  * Handles the submission of feedback form data to the server.
+  //  * @param {Event} e - The event object.
+  //  * @returns None
+  //  */
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

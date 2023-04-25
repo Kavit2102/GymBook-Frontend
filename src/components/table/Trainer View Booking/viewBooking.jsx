@@ -16,12 +16,21 @@ import "reactjs-popup/dist/index.css";
 import { useNavigate } from "react-router-dom";
 
 const ViewBooking = () => {
+  // /**
+  //  * A React functional component that initializes state variables for Classes, Time, and date.
+  //  * It also uses the useNavigate hook from the React Router to navigate to different pages.
+  //  * @returns None
+  //  */
   const navigate = useNavigate();
   const [Classes, setClasses] = useState([]);
 
   const [Time, setTime] = useState("");
   const [date, setDate] = useState("");
 
+  // /**
+  //  * Fetches the trainer classes from the API and sets them in state.
+  //  * @returns None
+  //  */
   const fetchClasses = async () => {
     const response = await getClassApi();
     await setClasses(response.trainerClass);
@@ -32,6 +41,11 @@ const ViewBooking = () => {
     fetchClasses();
   }, []);
 
+  // /**
+  //  * Updates the date and time of a class with the given ID.
+  //  * @param {{string}} _id - The ID of the class to update.
+  //  * @returns None
+  //  */
   const updateClassDnT = async (_id) =>{
     console.log(_id);
     let newDate = new Date(date);
@@ -64,6 +78,11 @@ const ViewBooking = () => {
         <br />
         <TableContainer component={Paper} className="table">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            {/* /**
+             * Renders the header row of a table with the following columns:
+             * Sr. No., Title, Description, Date, Time, Duration, Action.
+             * @returns A TableHead component with a TableRow containing TableCells for each column.
+              */}
             <TableHead>
               <TableRow>
                 <TableCell className="tableCell">Sr. No.</TableCell>
@@ -75,6 +94,11 @@ const ViewBooking = () => {
                 <TableCell className="tableCell">Action</TableCell>
               </TableRow>
             </TableHead>
+            {/* /**
+             * Renders a table body with rows of class sessions and their details, including the class title, description, date, time, duration, and options to reschedule or view bookings.
+             * @param {{Array}} Classes - An array of class session objects.
+             * @returns A table body component with rows of class session details.
+              */}
             <TableBody>
               {Classes.map((session, index) => (
                 <TableRow key={index}>
@@ -162,6 +186,10 @@ const ViewBooking = () => {
                       )}
                     </Popup>
 
+                    {/* /**
+                     * A component that displays a popup modal containing a table of bookings.
+                     * @returns A button that, when clicked, displays a modal containing a table of bookings.
+                     */}
                     <Popup
                       trigger={
                         <button

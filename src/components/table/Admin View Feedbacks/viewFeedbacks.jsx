@@ -1,8 +1,10 @@
+// Importing necessary components and styles
 import React, { useEffect, useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./viewFeedbacks.scss";
 
+// Importing Material UI components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,20 +12,27 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
+// Importing API function to get feedbacks
 import { getFeedBackApi } from "../../../service/auth.service";
 
+// Functional component for displaying the feedbacks
 const ViewFeedbacks = () => {
+  // Setting initial state for feedbacks as an empty array
   const [Feedbacks, setFeedbacks] = useState([]);
 
+  // Fetching feedbacks from the API using useEffect hook
   useEffect(() => {
     fetchFeedbacks();
   }, []);
 
+  // Function to fetch feedbacks using the API
   const fetchFeedbacks = async () => {
     const response = await getFeedBackApi();
     await setFeedbacks(response.data);
   };
 
+  // Rendering the feedbacks in a table
   return (
     <div className="view-feedbacks">
       <Sidebar mode="admin" />
@@ -62,4 +71,5 @@ const ViewFeedbacks = () => {
   );
 };
 
+// Exporting the ViewFeedbacks component
 export default ViewFeedbacks;
