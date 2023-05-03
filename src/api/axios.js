@@ -14,7 +14,7 @@ function getHeaders() {
 // Create an instance of Axios with a base URL and headers that will be used for all requests
 const Axiosinstance = axios.create({
   // Set the base URL to the API endpoint for GymBook on the local server
-  baseURL: "http://localhost:5000/api/gymbook",
+  baseURL: "http://localhost:4000/api/gymbook",
   // Get the headers by calling the getHeaders function defined above
   headers: getHeaders(),
 });
