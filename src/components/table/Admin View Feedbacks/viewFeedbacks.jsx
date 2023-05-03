@@ -1,6 +1,5 @@
 // Importing necessary components and styles
 import React, { useEffect, useState } from "react";
-import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./viewFeedbacks.scss";
 
@@ -37,7 +36,6 @@ const ViewFeedbacks = () => {
     <div className="view-feedbacks">
       <Sidebar mode="admin" />
       <div className="feedbacksContainer">
-        <Navbar />
         <h3>Feedback Details</h3>
         <br />
         <TableContainer component={Paper} className="table">

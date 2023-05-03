@@ -6,7 +6,6 @@
 //  * @returns The Add Class page component.
 //  */
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { fetchCustmersApi } from "../../../service/auth.service";
 import { addClassApi } from "../../../service/class.service";
@@ -81,7 +80,6 @@ const AddClass = () => {
     <div className="addclassform">
       <Sidebar mode="admin" />
       <div className="formContainer">
-        <Navbar />
         <h3>Add Class Form</h3>
         <div className="auth-body">
           <form className="auth-form-validation" onSubmit={handleSubmit}>
@@ -170,7 +168,7 @@ const AddClass = () => {
                  * with a role of "trainer".
                  * @param {{Array}} Users - the array of user objects to map through
                  * @returns An array of <option> elements for each user with a role of "trainer".
-                 */ */}
+                 */}
                 {Users.map((user, index) => {
                   return (
                     user.role === "trainer" && (

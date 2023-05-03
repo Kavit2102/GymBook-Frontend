@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./viewClasses.scss";
 import Table from "@mui/material/Table";
@@ -121,7 +120,6 @@ const ViewClasses = ({ mode }) => {
     <div className="view-classes">
       <Sidebar mode={mode} />
       <div className="classContainer">
-        <Navbar />
         <h3>Classes Details</h3>
         <br />
         <TableContainer component={Paper} className="table">

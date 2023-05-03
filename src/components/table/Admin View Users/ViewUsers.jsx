@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./ViewUsers.scss";
 import Table from "@mui/material/Table";
@@ -46,7 +45,6 @@ const ViewUsers = () => {
     <div className="view-trainers">
       <Sidebar mode="admin" />
       <div className="trainersContainer">
-        <Navbar />
         <h3>Users Details</h3>
         <br />
         <TableContainer component={Paper} className="table">

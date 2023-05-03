@@ -3,7 +3,6 @@
 //  * @returns The rendered feedback form component.
 //  */
 import React, { useState } from "react";
-import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { createFeedBackApi } from "../../../service/auth.service";
 import "./feedbackForm.scss";
@@ -46,7 +45,6 @@ const FeedbackForm = () => {
     <div className="addclassform">
       <Sidebar mode="customer" />
       <div className="formContainer">
-        <Navbar />
         <h3>Feedback Form</h3>  
         <div className="auth-body">
           <form className="auth-form-validation" onSubmit={handleSubmit}>

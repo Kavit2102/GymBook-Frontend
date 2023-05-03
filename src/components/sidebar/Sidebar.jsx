@@ -1,4 +1,4 @@
-/ Importing styles from the sidebar.scss file
+// Importing styles from the sidebar.scss file
 import "./sidebar.scss";
 
 // Importing material icons from the MUI library
@@ -30,7 +30,6 @@ const Sidebar = (props) => {
   localStorage.removeItem("login_status");
   localStorage.removeItem("token_status");
   history("/");
-  };
   };
 
   return (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../navbar/Navbar";
 import Sidebar from "../../sidebar/Sidebar";
 import "./viewBooking.scss";
 import moment from "moment-timezone";
@@ -73,7 +72,6 @@ const ViewBooking = () => {
     <div className="view-booking">
       <Sidebar mode="trainer" />
       <div className="bookingContainer">
-        <Navbar />
         <h3>View Booking</h3>
         <br />
         <TableContainer component={Paper} className="table">

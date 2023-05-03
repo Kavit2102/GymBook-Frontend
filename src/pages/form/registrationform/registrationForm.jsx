@@ -29,12 +29,12 @@ const UserForm = () => {
   const [Role, setRole] = useState("");
   const [Address, setAddress] = useState("");
 
-  /**
-   * Handles the form submission for user sign up. Sends a POST request to the server with the user's
-   * information and displays an alert message upon success or failure.
-   * @param {{Event}} e - the form submission event
-   * @returns None
-   */
+  // /**
+  //  * Handles the form submission for user sign up. Sends a POST request to the server with the user's
+  //  * information and displays an alert message upon success or failure.
+  //  * @param {{Event}} e - the form submission event
+  //  * @returns None
+  //  */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
