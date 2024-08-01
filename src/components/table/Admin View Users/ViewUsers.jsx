@@ -20,7 +20,7 @@ const ViewUsers = () => {
   // load the list of customers from the backend when the component mounts
   useEffect(() => {
     fetchCustomers();
-  }, []);
+  }, [Customers]);
 
   // fetch the list of customers from the backend and update the state
   const fetchCustomers = async () => {
@@ -30,7 +30,6 @@ const ViewUsers = () => {
 
   // delete a customer from the backend and update the state
   const deleteUser = async (_id) => {
-    console.log(_id);
     try {
       const response = await deleteUserApi(_id);
       alert("User deleted");
@@ -78,7 +77,12 @@ const ViewUsers = () => {
                     </TableCell>
                     <TableCell className="tableCell">{customer.role}</TableCell>
                     <TableCell className="tableCell">
-                      <button className="btn" onClick={() => deleteUser(customer._id)}>Delete</button>
+                      <button
+                        className="btn"
+                        onClick={() => deleteUser(customer._id)}
+                      >
+                        Delete
+                      </button>
                     </TableCell>
                   </TableRow>
                 );

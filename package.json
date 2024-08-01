@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
+    "@babel/plugin-proposal-private-property-in-object": "latest",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/x-data-grid": "latest",
@@ -21,6 +22,7 @@
     "reactjs-popup": "latest",
     "recharts": "latest",
     "sass": "latest",
+    "tailwindcss": "latest",
     "web-vitals": "latest"
   },
   "scripts": {

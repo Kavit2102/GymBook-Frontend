@@ -1,35 +1,46 @@
 import { useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.scss";
 import UserContext from "../../context/user_context";
+import Admin from "./admin/admin";
+import Trainer from "./trainer/trainer";
+import Customer from "./customer/customer";
 
-const Home = (props) => {
-
-  const user = useContext(UserContext)
+const Home = ({ mode }) => {
+  const { isUser } = useContext(UserContext);
 
   useEffect(() => {
-    console.log(user.isUser.current)
-  }, [user])
+    console.log(isUser.current);
+  }, [isUser.current]);
+
+  const renderContent = () => {
+    switch (mode) {
+      case "admin":
+        return <Admin />;
+      case "trainer":
+        return <Trainer />;
+      case "customer":
+        return <Customer />;
+      default:
+        return <div>Invalid mode</div>;
+    }
+  };
 
   return (
     <div className="home">
-      <Sidebar mode={props.mode} />
+      <Sidebar mode={mode} />
       <div className="homeContainer">
         <div className="listContainer">
-          <div className="listTitle">
-            {/* /**
-             * Renders a header based on the mode passed in as a prop.
-             * @param {{string}} props.mode - The mode of the dashboard (admin, trainer, or customer).
-             * @returns The appropriate header for the given mode.
-             */}
-            {props.mode === "admin" && <h1>Admin Dashboard</h1>}
-            {props.mode === "trainer" && <h1>Trainer Dashboard</h1>}
-            {props.mode === "customer" && <h1>Customer Dashboard</h1>}
-          </div>
+          <div className="listTitle">{renderContent()}</div>
         </div>
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  mode: PropTypes.oneOf(["admin", "trainer", "customer"]).isRequired,
 };
 
 export default Home;

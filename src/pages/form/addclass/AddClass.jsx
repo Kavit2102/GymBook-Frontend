@@ -36,28 +36,26 @@ const AddClass = () => {
 
   const fetchTrainers = async () => {
     const trainers = await fetchUsersApi();
-    await setUsers(trainers.allUser)
+    await setUsers(trainers.allUser);
     // console.log(Users);
-  }
+  };
 
   const handleAddClass = async (e) => {
     e.preventDefault();
-    let newDate = new Date(date);
-    let hour = Time.split(":")[0];
-    let minute = Time.split(":")[1];
-    newDate.setHours(hour);
-    newDate.setMinutes(minute);
+    let newDate = await new Date(date);
+    let hour = await Time.split(":")[0];
+    let minute = await Time.split(":")[1];
+    await newDate.setHours(hour);
+    await newDate.setMinutes(minute);
     try {
       const body = {
         classTitle: Title,
         description: Desc,
         trainerId: trainerID.current,
         trainerName: trainerName.current,
-        date: date,
-        time: Time,
+        date: newDate.toLocaleString(),
         duration: duration,
       };
-      // console.log(body);
       const response = await addClassApi(body);
       console.log(response);
       // toast.success("Class added Successfully");
@@ -68,14 +66,16 @@ const AddClass = () => {
   };
 
   const handleChange = async (e) => {
-    trainerID.current = await e.target.value
-    trainerName.current = await e.target.getElementsByClassName(e.target.value)[0].label;
-    console.log(trainerID.current + " " + trainerName.current)
-  }
+    trainerID.current = await e.target.value;
+    trainerName.current = await e.target.getElementsByClassName(
+      e.target.value
+    )[0].label;
+    console.log(trainerID.current + " " + trainerName.current);
+  };
 
   useEffect(() => {
     fetchTrainers();
-  }, [])
+  }, []);
 
   return (
     <div className="addclassform">
@@ -170,17 +170,31 @@ const AddClass = () => {
                  * @param {{Array}} Users - the array of user objects to map through
                  * @returns An array of <option> elements for each user with a role of "trainer".
                  */}
-                {Users.map(user => {
+                <option
+                  value="select-trainer"
+                  className="select-trainer"
+                  label="Select Trainer"
+                ></option>
+                {Users.map((user) => {
                   return (
                     user.role === "trainer" && (
-                      <option key={user._id} value={user._id} className={user._id} label={user.name}></option>
+                      <option
+                        key={user._id}
+                        value={user._id}
+                        className={user._id}
+                        label={user.name}
+                      ></option>
                     )
                   );
                 })}
               </select>
             </div>
 
-            <button type="submit" className="btn-submit" onClick={handleAddClass}>
+            <button
+              type="submit"
+              className="btn-submit"
+              onClick={handleAddClass}
+            >
               Submit
             </button>
           </form>

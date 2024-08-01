@@ -40,8 +40,8 @@ const UserForm = () => {
     SignupApi(body).then(
       response => {
         console.log(response);
-        // toast.success(`SignUp for ${Role} role Successfull !!!`);
-        navigate("/admin");
+        alert(`SignUp for ${Role} role Successfull !!!`);
+        navigate(`/${Role}`);
       }
     ).
       catch(error => {

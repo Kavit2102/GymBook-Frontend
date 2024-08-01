@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { createFeedBackApi } from "../../../service/auth.service";
 import "./feedbackForm.scss";
+import { Rating, Typography } from "@mui/material";
 
 const FeedbackForm = () => {
   /**
@@ -16,6 +17,7 @@ const FeedbackForm = () => {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Feedback, setFeedback] = useState("");
+  const [rating, setRating] = useState(Number);
 
   // /**
   //  * Handles the submission of feedback form data to the server.
@@ -29,6 +31,7 @@ const FeedbackForm = () => {
         name: Name,
         email: Email,
         feedBack: Feedback,
+        rating: rating,
       };
       // console.log(body);
       const response = await createFeedBackApi(body);
@@ -45,7 +48,7 @@ const FeedbackForm = () => {
     <div className="addclassform">
       <Sidebar mode="customer" />
       <div className="formContainer">
-        <h3>Feedback Form</h3>  
+        <h3>Feedback Form</h3>
         <div className="auth-body">
           <form className="auth-form-validation" onSubmit={handleSubmit}>
             <div className="input-field">
@@ -87,6 +90,18 @@ const FeedbackForm = () => {
                 rows="3"
                 onChange={(e) => setFeedback(e.target.value)}
               ></textarea>
+            </div>
+
+            <div className="input-field">
+              <Typography component="legend">Rating</Typography>
+              <Rating
+                name="simple-controlled"
+                value={rating}
+                onChange={(event) => {
+                  setRating(event.target.value);
+                  console.log(event.target.value);
+                }}
+              />
             </div>
 
             <button type="submit" className="btn-submit">

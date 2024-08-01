@@ -14,6 +14,7 @@ import Paper from "@mui/material/Paper";
 
 // Importing API function to get feedbacks
 import { getFeedBackApi } from "../../../service/auth.service";
+import { Rating } from "@mui/material";
 
 // Functional component for displaying the feedbacks
 const ViewFeedbacks = () => {
@@ -29,6 +30,7 @@ const ViewFeedbacks = () => {
   const fetchFeedbacks = async () => {
     const response = await getFeedBackApi();
     await setFeedbacks(response.data);
+    console.log(response.data)
   };
 
   // Rendering the feedbacks in a table
@@ -48,6 +50,9 @@ const ViewFeedbacks = () => {
                 <TableCell className="tableCell">
                   Feedback Description
                 </TableCell>
+                <TableCell className="tableCell">
+                  Rating
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -58,6 +63,9 @@ const ViewFeedbacks = () => {
                   <TableCell className="tableCell">{feedback.email}</TableCell>
                   <TableCell className="tableCell">
                     {feedback.feedBack}
+                  </TableCell>
+                  <TableCell className="tableCell">
+                    <Rating name="read-only" value={feedback.rating} readOnly />
                   </TableCell>
                 </TableRow>
               ))}

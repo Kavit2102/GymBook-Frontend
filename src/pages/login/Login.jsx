@@ -75,8 +75,8 @@ const Signin = () => {
     const body = { name, email: newEmail, mobileNo: mobile, address, password: newPassword, role };
     try {
       const response = await SignupApi(body);
-      console.log(response.data);
-      alert("Sign Up Successful!");
+      // console.log(response.data);
+      alert("Sign Up Successful !!!");
     } catch (error) {
       console.error(error);
       alert("Sign Up failed: " + (error.message || "Server Error"));
