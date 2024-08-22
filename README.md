@@ -1,3 +1,10 @@
+### Live Demo - https://gym-book-frontend.vercel.app/
+
+### Credentials
+    **Admin - {email : "admin@gmail.com", password : "admin@12345"}**
+    **Trainer - {email : "trainer@gmail.com", password : "trainer@12345"}**
+    **Customer - {email : "customer@gmail.com", password : "customer@12345"}**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,10 +75,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### Live Demo - https://gym-book-frontend.vercel.app/
-
-### Credentials
-    **Admin - {email : "admin@gmail.com", password : "admin@12345"}**
-    **Trainer - {email : "trainer@gmail.com", password : "trainer@12345"}**
-    **Customer - {email : "customer@gmail.com", password : "customer@12345"}**
